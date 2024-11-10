@@ -75,7 +75,7 @@ if __name__ == "__main__":
     x_train = normalization(remove_avg(leakages), feature_range=(-1, 1))
 
     # Non-profiling DL
-    EPOCHS = 5
+    EPOCHS = 10
     guess_range = range(0, 256)
     acc = np.zeros((len(guess_range), EPOCHS))
     profile_engine = NonProfile(leakage_model=leakage_model)
@@ -102,7 +102,7 @@ if __name__ == "__main__":
 
 ![cw_trace](images/non_profiling_result.png)
 
-One of the main reasons for open-sourcing this project is to help students, security researchers and security evaluation lab engineers. Therefore, we expect your contribution. 
+One of the main reasons for open-sourcing this project is to help students, security researchers, and security experts in evaluation labs. Therefore, we expect your contribution. 
 
 
 
