@@ -6,7 +6,7 @@ The Donjon presents you a new in-house tool for performing SCAs using DL. This p
 
 Deep learning based side-channel attacks (DL-SCAs) are considered as
 a very powerful alternative to the well-known template attack for its ability to break protected cryptographic implementations. It has been adopted by most certification labs as an evaluation tool. 
-SCADL [1] is an open source tool that implements the most state-of-the-art techniques. It integrates the following techniques: 
+[Scadl](https://github.com/Ledger-Donjon/scadl) is an open source tool that implements the most state-of-the-art techniques. It integrates the following techniques: 
 
 - Normal profiling: A straightforward profiling technique as the attacker will use a known-key dataset to train a DL model. Then, this model is used to attack the unknown-key data set. This technique was presented by the following work: [1](https://eprint.iacr.org/2016/921) and [2](https://eprint.iacr.org/2018/053).
 - [Non-profiling](https://tches.iacr.org/index.php/TCHES/article/view/7387): A similar technique to differential power analysis ([DPA](https://paulkocher.com/doc/DifferentialPowerAnalysis.pdf)) but it has the several advantages over DPA to attack protected designs (masking and desynchronization).
@@ -20,9 +20,9 @@ Scadl uses two different datasets for its tutorial. The first dataset is collect
 
 ![cw_trace](images/cw_aes_single.png)
 
-# Examples
+# Example
 
-As we mentioned before, scadl implements different types of DL-based attacks and here is an example of how to use scadl for non-profiling DL in the cases of ASCAD dataset. 
+As we mentioned before, scadl implements different types of DL-based attacks and here is an example of how to use scadl for non-profiling DL in cases of ASCAD dataset. 
 
 ```python
 import sys
@@ -102,7 +102,7 @@ if __name__ == "__main__":
 
 ![cw_trace](images/non_profiling_result.png)
 
-One of the main reasons for open-sourcing this project is to help students, security researchers, and security experts in evaluation labs. Therefore, we expect your contribution. 
+> One of the main reasons for open-sourcing this project is to help students, security researchers, and security experts in evaluation labs. Therefore, we expect your contribution.
 
 
 
