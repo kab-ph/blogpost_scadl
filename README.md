@@ -22,7 +22,7 @@ Scadl uses two different datasets for its tutorial. The first dataset is collect
 
 # Example
 
-As we mentioned before, scadl implements different types of DL-based attacks and here is an example of how to use scadl for non-profiling DL in cases of ASCAD dataset. 
+As we mentioned before, scadl implements different types of DL-based attacks and here is an example of how to use scadl for non-profiling DL in case of ASCAD dataset. 
 
 ```python
 import sys
