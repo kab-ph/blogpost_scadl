@@ -1,4 +1,4 @@
-## SCADL: A new tool from the Donjon related to side-channel attacks (SCAs) using deep learning (DL)
+# SCADL: A new tool from the Donjon related to side-channel attacks (SCAs) using deep learning (DL)
 
 The Donjon presents you a new in-house tool for performing SCAs using DL. This project has been developed within the research activities of the Donjon team (Ledger's security team), to help us during side-channel evaluations.
 
@@ -107,3 +107,20 @@ if __name__ == "__main__":
 
 
 **Done by Karim M. Abdellatif and Leo Benito**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
