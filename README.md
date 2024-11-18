@@ -1,29 +1,37 @@
 # SCADL: A new tool from the Donjon for side-channel attacks (SCAs) using state-of-the-art deep learning (DL)
 
-In 2019, Ledger Donjon (Ledger's product security team) released, Lascar, it's Side Channel Attack (SCA) library. Since then, Deep learning based SCA (DL-SCA) research has seen significant progress. During, our research activities we developed a new tool implementing DL-SCA methods to help us during side-channel evaluations.
+In 2019, Ledger Donjon (Ledger's product security team) released, [Lascar](https://github.com/Ledger-Donjon/lascar/), its Side Channel Attack (SCA) library. Since then, Deep Learning based SCA (DL-SCA) research has seen significant progress. During our research activities, we developed a new tool implementing DL-SCA methods to help us during side-channel evaluations.
 
-We are excited to release SCADL. This new tool implements state-of-the-art DL-SCA research. Following our goal to open source our work, SCADL is available under GPLv3. Feel free to play with it and experiment with state-of-the-art research.
+We are excited to release [SCADL](https://github.com/Ledger-Donjon/scadl). This new tool implements state-of-the-art DL-SCA research. Following our goal to open source our work, SCADL is available under GPLv3. Feel free to play with it and experiment with state-of-the-art research.
+
+By open-sourcing this project, we expect helping students, security researchers, and security experts in evaluation labs to adopt Deep Learning techniques in their projects involving side channel analysis. Therefore, we expect your contribution.
 
 ## Introduction
 
 DL-SCAs are considered as a very powerful alternative to the well-known template attacks for its ability to break protected cryptographic implementations. It has been adopted by most certification labs as an evaluation tool. [SCADL](https://github.com/Ledger-Donjon/scadl) is an open source tool that implements the most state-of-the-art techniques. It integrates the following techniques:
 
-- Normal profiling: A straightforward profiling technique as the attacker will use a known-key dataset to train a DL model. Then, this model is used to attack the unknown-key data set. This technique was presented by the following work: [1](https://eprint.iacr.org/2016/921) and [2](https://eprint.iacr.org/2018/053).
-- [Non-profiling](https://tches.iacr.org/index.php/TCHES/article/view/7387): A similar technique to differential power analysis ([DPA](https://paulkocher.com/doc/DifferentialPowerAnalysis.pdf)) but it has the several advantages over DPA to attack protected designs (masking and desynchronization).
-- [Multi-label](https://eprint.iacr.org/2020/436): A technique to attack multiple keys using only one DL model.  
-- [Multi-tasking](https://eprint.iacr.org/2023/006.pdf): Another technique for attacking multiple keys using a single model.
-- Data augmentation: A technique to increase the dataset to boost the DL efficiency. SCADL includes [mixup](https://eprint.iacr.org/2021/328.pdf) and [random crop](https://blog.roboflow.com/why-and-how-to-implement-random-crop-data-augmentation/).
-- [Attribution methods](https://eprint.iacr.org/2019/143.pdf): A technique to perform leakage detection using DL.
+- Normal profiling: A straightforward profiling technique where the attacker uses a known-key dataset to train a DL model. Then, this model is used to attack the unknown-key data set.
+- Non-profiling: A similar technique to differential power analysis ([DPA](https://paulkocher.com/doc/DifferentialPowerAnalysis.pdf)) with several advantages, for instance attacking protected designs (masking and desynchronization).
+- Multi-label: A technique to attack multiple keys using only one DL model.  
+- Multi-tasking: Another technique for attacking multiple keys using a single model.
+- Data augmentation: A technique to increase the dataset to boost the DL efficiency. SCADL includes two different methods to perform data augmentation called *mixup* and *random crop*.
+- Attribution methods: A technique to perform leakage detection using DL.
 
-## Tutorial using known datasets
+## Tutorials
+
+The repository provides several [tutorials](https://github.com/Ledger-Donjon/scadl/tree/master/tutorial) as examples to use each technique.
+
+### Datasets
 
 SCADL uses two different datasets for its tutorials. The first dataset is collected by running a non-protected AES on [ChipWhisperer-Lite](https://rtfm.newae.com/Targets/CW303%20Arm/). The second dataset is [ASCAD](https://github.com/ANSSI-FR/ASCAD/tree/master/ATMEGA_AES_v1) which is widely used in the side-channel attacks (SCAs) domain.
 
-![ChipWhisperer power consumption trace](images/cw_aes_single.png)
+| ![ChipWhisperer power consumption trace](images/cw_aes_single.png) |
+|:--:|
+| *Power consumption traces acquired from a ChipWhisperer* |
 
-## Example
+### Example of non-profiling DL
 
-As we mentioned before, SCADL implements different types of DL-based attacks and here is an example of how to use SCADL for non-profiling DL in case of ASCAD dataset.
+As we mentioned before, SCADL implements different types of DL-based attacks. Here is a python example of how to use SCADL for *non-profiling DL* in case of *ASCAD* dataset.
 
 ```python
 import sys
@@ -93,7 +101,7 @@ if __name__ == "__main__":
             verbose=0
         )
     guessed_key = np.argmax(np.max(acc, axis=1))
-    print(f"guessed key = {guessed_key}")
+    print(f"Guessed key = {guessed_key}")
     plt.plot(acc.T, "grey")
     plt.plot(acc[correct_key], "black")
     plt.xlabel("Number of epochs")
@@ -101,8 +109,19 @@ if __name__ == "__main__":
     plt.show()
 ```
 
+Here is the designated output of the script, where we can see that how the accuracy (shown in black) of the correct value of the targeted byte of the key grows significantly in small number of epochs.
+
 ![cw_trace](images/non_profiling_result.png)
 
-> One of the main reasons for open-sourcing this project is to help students, security researchers, and security experts in evaluation labs. Therefore, we expect your contribution.
+## Related publications
+
+Techniques implemented in SCADL are based on following publications:
+
+- Normal profiling: [Breaking Cryptographic Implementations Using Deep Learning Techniques](https://eprint.iacr.org/2016/921) and [Study of Deep Learning Techniques for Side-Channel Analysis and Introduction to ASCAD Database](https://eprint.iacr.org/2018/053).
+- Non-profiling: [Non-Profiled Deep Learning-based Side-Channel attacks with Sensitivity Analysis](https://tches.iacr.org/index.php/TCHES/article/view/7387)
+- Multi-label : [Deep Learning based Side-Channel Attack: a New Profiling Methodology based on Multi-Label Classification](https://eprint.iacr.org/2020/436)
+- Multi-tasking: [Exploring multi-task learning in the context of masked AES implementations](https://eprint.iacr.org/2023/006)
+- Data Augmentation: [Mixup Data Augmentation for Deep Learning Side-Channel Attacks](https://eprint.iacr.org/2021/328) and [Random Crop](https://blog.roboflow.com/why-and-how-to-implement-random-crop-data-augmentation/).
+- Attribution methods: [Deep Neural Network Attribution Methods for Leakage Analysis and Symmetric Key Recovery](https://eprint.iacr.org/2019/143).
 
 **Done by Karim M. Abdellatif and Leo Benito**
