@@ -1,4 +1,4 @@
-# SCADL: A new tool for state-of-the-art deep learning based side-channel attacks
+# SCADL: A new tool from the Donjon for side-channel attacks (SCAs) using state-of-the-art deep learning (DL)
 
 In 2019, Ledger Donjon (Ledger's product security team) released, Lascar, it's Side Channel Attack (SCA) library. Since then, Deep learning based SCA (DL-SCA) research has seen significant progress. During, our research activities we developed a new tool implementing DL-SCA methods to help us during side-channel evaluations.
 
@@ -6,7 +6,7 @@ We are excited to release SCADL. This new tool implements state-of-the-art DL-SC
 
 ## Introduction
 
-DL-SCAs are considered as a very powerful alternative to the well-known template attacks for its ability to break protected cryptographic implementations. It has been adopted by most certification labs as an evaluation tool. [SCADL](https://github.com/Ledger-Donjon/scadl) is an open source tool that implements the most state-of-the-art techniques. It integrates the following techniques: 
+DL-SCAs are considered as a very powerful alternative to the well-known template attacks for its ability to break protected cryptographic implementations. It has been adopted by most certification labs as an evaluation tool. [SCADL](https://github.com/Ledger-Donjon/scadl) is an open source tool that implements the most state-of-the-art techniques. It integrates the following techniques:
 
 - Normal profiling: A straightforward profiling technique as the attacker will use a known-key dataset to train a DL model. Then, this model is used to attack the unknown-key data set. This technique was presented by the following work: [1](https://eprint.iacr.org/2016/921) and [2](https://eprint.iacr.org/2018/053).
 - [Non-profiling](https://tches.iacr.org/index.php/TCHES/article/view/7387): A similar technique to differential power analysis ([DPA](https://paulkocher.com/doc/DifferentialPowerAnalysis.pdf)) but it has the several advantages over DPA to attack protected designs (masking and desynchronization).
@@ -16,13 +16,14 @@ DL-SCAs are considered as a very powerful alternative to the well-known template
 - [Attribution methods](https://eprint.iacr.org/2019/143.pdf): A technique to perform leakage detection using DL.
 
 ## Tutorial using known datasets
+
 SCADL uses two different datasets for its tutorials. The first dataset is collected by running a non-protected AES on [ChipWhisperer-Lite](https://rtfm.newae.com/Targets/CW303%20Arm/). The second dataset is [ASCAD](https://github.com/ANSSI-FR/ASCAD/tree/master/ATMEGA_AES_v1) which is widely used in the side-channel attacks (SCAs) domain.
 
 ![ChipWhisperer power consumption trace](images/cw_aes_single.png)
 
 ## Example
 
-As we mentioned before, SCADL implements different types of DL-based attacks and here is an example of how to use SCADL for non-profiling DL in case of ASCAD dataset. 
+As we mentioned before, SCADL implements different types of DL-based attacks and here is an example of how to use SCADL for non-profiling DL in case of ASCAD dataset.
 
 ```python
 import sys
@@ -103,7 +104,5 @@ if __name__ == "__main__":
 ![cw_trace](images/non_profiling_result.png)
 
 > One of the main reasons for open-sourcing this project is to help students, security researchers, and security experts in evaluation labs. Therefore, we expect your contribution.
-
-
 
 **Done by Karim M. Abdellatif and Leo Benito**
