@@ -1,4 +1,4 @@
-# SCADL: A new tool from the Donjon related to side-channel attacks (SCAs) using deep learning (DL)
+# SCADL: A new side-channel attack tool using deep learning
 
 In 2019, Ledger Donjon (Ledger's product security team) released [lascar](https://github.com/Ledger-Donjon/lascar) as a SCA tool. 
 Since then, Deep Learning based SCAs (DL-SCAs) research have seen significant progress by several interesting publications. 
