@@ -100,7 +100,7 @@ print(f"guessed key = {guessed_key}")
 
 ```
 
-- The following figure shows the accuracy of all the brute-forced keys. The black curve indicates the correct guessed key.
+- The following figure shows the accuracy of all the brute-forced keys. The black curve indicates the accuracy of the correct guessed key.
 
 ![cw_trace](images/non_profiling_result.png)
 
