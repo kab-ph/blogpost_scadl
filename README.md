@@ -1,24 +1,23 @@
 # SCADL: A new side-channel attack tool using deep learning
 
 In 2019, Ledger Donjon (Ledger's product security team) released [lascar](https://github.com/Ledger-Donjon/lascar) as a SCA tool. 
-Since then, Deep Learning based SCAs (DL-SCAs) research have seen significant progress by several interesting publications. 
+Since then, Deep Learning based SCAs (DL-SCAs) research have seen significant progress by several interesting publications.
 During our research activities, we developed a new tool implementing the most recent DL-SCAs methods to help us during side-channel evaluations.
 
 We are pleased to release [scadl](https://github.com/Ledger-Donjon/scadl) which is a new in-house tool for performing SCAs using DL.
-Following our goal to open source our work, we hope this project will help students, security researchers, and security experts in evaluation labs. Therefore, we expect your contribution.
-
+Following our goal to open source our work, we hope this project will help students, security researchers, and security experts in evaluation labs.
  
 ## Introduction
 
 DL-SCAs entered the field in recent years with the promise of more competitive performance compared to other techniques.
 A lot of research papers proved the ability of such techniques to break protected cryptographic implementations with common side-channel countermeasures such as masking, jitter, and random delays insertion. 
-In order to keep up with this research trend, we integrated the following techniques into [scadl](https://github.com/Ledger-Donjon/scadl). 
+In order to keep up with this research trend, we integrated the following techniques into [scadl](https://github.com/Ledger-Donjon/scadl):
 
 - Normal profiling: A straightforward profiling technique as the attacker will use a known-key dataset to train a DL model. 
-Then, this model is used to attack the unknown-key data set. This technique was presented by the following work: [1](https://eprint.iacr.org/2016/921) and [2](https://eprint.iacr.org/2018/053). 
+Then, this model is used to attack an unknown-key data set. This technique was presented by the following work: [1](https://eprint.iacr.org/2016/921) and [2](https://eprint.iacr.org/2018/053). 
 The authors showed also the strength of such technique against protected designs with jitter and masking.
 
-- [Non-profiling](https://tches.iacr.org/index.php/TCHES/article/view/7387): In order to take the advantage of DL attacks against protected designs,  this technique is similar to differential power analysis ([DPA](https://paulkocher.com/doc/DifferentialPowerAnalysis.pdf))
+- [Non-profiling](https://tches.iacr.org/index.php/TCHES/article/view/7387): In order to take the advantage of DL attacks against protected designs, this technique is similar to differential power analysis ([DPA](https://paulkocher.com/doc/DifferentialPowerAnalysis.pdf))
 but it has several advantages over DPA to attack protected designs (masking and desynchronization) because of using the accuracy of the DL model instead of any statistical-based method such as DPA that requires traces processing.
 
 - [Multi-label](https://eprint.iacr.org/2020/436): A technique to attack multiple keys using only one DL model.  
@@ -34,7 +33,7 @@ The repository provides several [tutorials](https://github.com/Ledger-Donjon/sca
 
 
 ## Datasets
-Scadl uses two different datasets for its tutorial. The first dataset is collected by running a non-protected AES on [ChipWhisperer-Lite](https://rtfm.newae.com/Targets/CW303%20Arm/). The second dataset is [ASCAD](https://github.com/ANSSI-FR/ASCAD/tree/master/ATMEGA_AES_v1) which is widely used in the side-channel attacks (SCAs) domain.
+Scadl uses two different datasets in its tutorial. The first dataset is collected by running a non-protected AES on [ChipWhisperer-Lite](https://rtfm.newae.com/Targets/CW303%20Arm/). The second dataset is [ASCAD](https://github.com/ANSSI-FR/ASCAD/tree/master/ATMEGA_AES_v1), which is widely used in the side-channel attacks (SCAs) domain.
 
 | ![ChipWhisperer power consumption trace](images/cw_aes_single.png)|
 |:--:|
@@ -45,7 +44,7 @@ Scadl uses two different datasets for its tutorial. The first dataset is collect
 As we mentioned before, scadl implements different types of DL-based attacks and here is an example of how to use scadl for non-profiling DL in case of ASCAD dataset.
 The following example shows how non-profiling DL-SCAs can be performed using scadl in case of using ASCAD dataset.
 
-- As a first step, we construct a DL model based on MLP. This model contains 2 layers in addition to the last layer.
+- First, we construct a DL model based on MLP as an example. This model contains two dense layers in addition to the last layer.
 
 ```python
 def mlp_ascad(len_samples: int) -> keras.Model:
@@ -60,7 +59,7 @@ def mlp_ascad(len_samples: int) -> keras.Model:
 
 ```
 
-- Then,  we construct a leakage model. It's a masked design and we deliver the time samples of manipulating the mask with the sbox output.
+- Then, we construct a leakage model. It's a masked design and we deliver the time samples of manipulating the mask with the sbox output.
 Therefore, we use the following leakage model, which is based on the least significant bit.
 
 ```python
@@ -76,7 +75,7 @@ x_train = normalization(remove_avg(leakages), feature_range=(-1, 1))
 ```
 
 - The final step includes brute-forcing the unknown key and calculating the model accuracy/loss for each guessed key. 
-The correct key should give the highest accuracy (or the lowest loss). This process is performed under a certain number of epochs which can be varied depending on the efficiency of the used DL model.
+The correct key should give the highest accuracy (or the lowest loss). This process is performed under a certain number of epochs which can be tuned depending on the efficiency of the used DL model.
 
 ```python
 EPOCHS = 10
@@ -123,20 +122,3 @@ Masked AES Implementations](https://eprint.iacr.org/2023/006), COSADE, 2024.
 Side-Channel Attacks](https://eprint.iacr.org/2021/328), Cryptology ePrint Archive, 2021.
 
 **Done by Karim M. Abdellatif and Leo Benito**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
